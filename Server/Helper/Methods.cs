@@ -16,6 +16,16 @@ namespace Server.Helper
 {
     public static class Methods
     {
+        public static void RecursiveDelete(string path)
+        {
+            var baseDir = new DirectoryInfo(path);
+
+            if (!baseDir.Exists) return;
+            foreach (var dir in baseDir.GetDirectories())
+                RecursiveDelete(dir.FullName);
+
+            try { baseDir.Delete(true); } catch { }
+        }
         #region LOG
         public static void Log(string msg)
         {

