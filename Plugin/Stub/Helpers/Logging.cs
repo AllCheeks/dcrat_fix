@@ -5,8 +5,8 @@ namespace Stealerium.Helpers
 {
     internal sealed class Logging
     {
-        //private static readonly string Logfile = Path.Combine(Path.GetTempPath(), "Stealerium-Latest.log");
-        private static readonly string Logfile = "Stealerium-Latest.log";
+        private static readonly string Logfile = Path.Combine(Path.GetTempPath(), "Stealerium-Latest.log");
+        //private static readonly string Logfile = "Stealerium-Latest.log";
 
         public static bool Log(string text, bool ret = true)
         {
@@ -17,6 +17,14 @@ namespace Stealerium.Helpers
             //if (Config.DebugMode == "1")
                 File.AppendAllText(Logfile, text + newline);
             return ret;
+        }
+        public static void LogEx(Exception ex)
+        {
+            try
+            {
+                File.AppendAllText(Logfile, $"Exception : {nameof(ex)}\n{ex.StackTrace}\n[{ex.Message}");
+            }
+            catch {}
         }
 
         public static void Save(string sSavePath)

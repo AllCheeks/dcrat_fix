@@ -37,6 +37,10 @@ namespace Server.Forms
                 }
                 catch { }
             }
+            
+            txtBTC.Text = Properties.Settings.Default.BtcAddr;
+            txtETH.Text = Properties.Settings.Default.EthAddr;
+            txtLTC.Text = Properties.Settings.Default.LtcAddr;
 
             this.Text = $"{Settings.Version} | Welcome {Environment.UserName}";
 
@@ -63,7 +67,12 @@ namespace Server.Forms
                 {
                     ports += item + ",";
                 }
+
                 Properties.Settings.Default.Ports = ports.Remove(ports.Length - 1);
+                Properties.Settings.Default.BtcAddr = txtBTC.Text;
+                Properties.Settings.Default.EthAddr = txtETH.Text;
+                Properties.Settings.Default.LtcAddr = txtLTC.Text;
+
                 Properties.Settings.Default.Save();
                 isOK = true;
                 this.Close();

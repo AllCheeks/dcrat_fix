@@ -16,7 +16,6 @@ namespace Server
         public static long ReceivedValue { get; set; }
         public static object LockReceivedSendValue = new object();
 
-
         public static string CertificatePath = Application.StartupPath + "\\ServerCertificate.p12";
         public static X509Certificate2 ServerCertificate;
         public static readonly string Version = "DcRat  1.0.7";

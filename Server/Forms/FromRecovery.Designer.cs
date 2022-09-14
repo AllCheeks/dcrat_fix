@@ -228,6 +228,7 @@ namespace Server.Forms
             this.Controls.Add(this.chkName);
             this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.tabControl);
+            this.MaximumSize = new System.Drawing.Size(1000, 600);
             this.Name = "FromRecovery";
             this.Text = "FromRecovery";
             this.tabControl.ResumeLayout(false);

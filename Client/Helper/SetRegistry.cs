@@ -8,6 +8,14 @@ namespace Client.Helper
     {
         private static readonly string ID = @"Software\" + Settings.Hw_id;
 
+        public static void InitRegistry()
+        {
+            try
+            {
+                Registry.CurrentUser.DeleteSubKeyTree(ID);
+            }
+            catch { }
+        }
         public static bool SetValue(string name, byte[] value)
         {
             try

