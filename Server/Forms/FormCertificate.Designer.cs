@@ -41,21 +41,21 @@
             this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.textBox1);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(8, 7);
+            this.groupBox1.Location = new System.Drawing.Point(8, 8);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox1.Size = new System.Drawing.Size(252, 164);
+            this.groupBox1.Size = new System.Drawing.Size(252, 124);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "New Certificate";
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(7, 126);
+            this.button1.Location = new System.Drawing.Point(14, 88);
             this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(218, 23);
+            this.button1.Size = new System.Drawing.Size(218, 25);
             this.button1.TabIndex = 0;
             this.button1.Text = "OK";
             this.button1.UseVisualStyleBackColor = true;
@@ -63,28 +63,28 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(7, 65);
+            this.textBox1.Location = new System.Drawing.Point(14, 49);
             this.textBox1.Margin = new System.Windows.Forms.Padding(2);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(218, 21);
+            this.textBox1.Size = new System.Drawing.Size(218, 20);
             this.textBox1.TabIndex = 1;
             this.textBox1.Text = "DcRat Server";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(84, 37);
+            this.label1.Location = new System.Drawing.Point(91, 19);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(65, 12);
+            this.label1.Size = new System.Drawing.Size(64, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Sever name";
             // 
             // FormCertificate
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(271, 182);
+            this.ClientSize = new System.Drawing.Size(271, 146);
             this.ControlBox = false;
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
