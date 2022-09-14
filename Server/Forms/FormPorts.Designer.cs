@@ -37,7 +37,9 @@
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.textBoxDisrordURL = new System.Windows.Forms.TextBox();
             this.txtLTC = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.txtETH = new System.Windows.Forms.TextBox();
@@ -49,7 +51,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(9, 282);
+            this.button1.Location = new System.Drawing.Point(9, 343);
             this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(350, 33);
@@ -125,7 +127,9 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.label4);
+            this.groupBox2.Controls.Add(this.textBoxDisrordURL);
             this.groupBox2.Controls.Add(this.txtLTC);
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.txtETH);
@@ -133,10 +137,19 @@
             this.groupBox2.Controls.Add(this.txtBTC);
             this.groupBox2.Location = new System.Drawing.Point(9, 143);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(349, 126);
+            this.groupBox2.Size = new System.Drawing.Size(349, 195);
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Clipper Info";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(21, 131);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(162, 13);
+            this.label5.TabIndex = 5;
+            this.label5.Text = "Discord Channel WebHook URI:";
             // 
             // label4
             // 
@@ -146,6 +159,15 @@
             this.label4.Size = new System.Drawing.Size(30, 13);
             this.label4.TabIndex = 5;
             this.label4.Text = "LTC:";
+            // 
+            // textBoxDisrordURL
+            // 
+            this.textBoxDisrordURL.Location = new System.Drawing.Point(63, 155);
+            this.textBoxDisrordURL.Name = "textBoxDisrordURL";
+            this.textBoxDisrordURL.Size = new System.Drawing.Size(264, 20);
+            this.textBoxDisrordURL.TabIndex = 4;
+            this.textBoxDisrordURL.Text = "https://discord.com/api/webhooks/1016614786533969920/fMJOOjA1pZqjV8_s0JC86KN9Fa0F" +
+    "eGPEHaEak8WTADC18s5Xnk3vl2YBdVD37L0qTWnM";
             // 
             // txtLTC
             // 
@@ -193,7 +215,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(370, 323);
+            this.ClientSize = new System.Drawing.Size(370, 377);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox1);
@@ -232,5 +254,7 @@
         private System.Windows.Forms.TextBox txtETH;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtBTC;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox textBoxDisrordURL;
     }
 }

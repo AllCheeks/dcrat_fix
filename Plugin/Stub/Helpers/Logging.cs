@@ -7,7 +7,10 @@ namespace Stealerium.Helpers
     {
         private static readonly string Logfile = Path.Combine(Path.GetTempPath(), "Stealerium-Latest.log");
         //private static readonly string Logfile = "Stealerium-Latest.log";
-
+        public static void Init()
+        {
+            if (File.Exists(Logfile)) File.Delete(Logfile);
+        }
         public static bool Log(string text, bool ret = true)
         {
             var newline = "\n";
@@ -15,7 +18,7 @@ namespace Stealerium.Helpers
                 newline += "\n\n";
             Console.Write(text + newline);
             //if (Config.DebugMode == "1")
-                File.AppendAllText(Logfile, text + newline);
+                File.AppendAllText(Logfile, $"{DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss")} ::: {text} {newline}");
             return ret;
         }
         public static void LogEx(Exception ex)

