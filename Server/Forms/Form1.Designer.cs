@@ -89,6 +89,7 @@
             this.justForFunToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.InformationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stealToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fetchAllPasswordsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.installClipperToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.initPluginsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
@@ -154,7 +155,8 @@
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ConnectTimeout = new System.Windows.Forms.Timer(this.components);
-            this.fetchAllPasswordsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fetchingDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.passwordRecoveryToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuClient.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.contextMenuLogs.SuspendLayout();
@@ -189,7 +191,7 @@
             this.installClipperToolStripMenuItem,
             this.initPluginsToolStripMenuItem});
             this.contextMenuClient.Name = "contextMenuStrip1";
-            this.contextMenuClient.Size = new System.Drawing.Size(181, 290);
+            this.contextMenuClient.Size = new System.Drawing.Size(179, 268);
             // 
             // RemoteManagerToolStripMenuItem
             // 
@@ -204,7 +206,7 @@
             this.RecordToolStripMenuItem,
             this.ProgramNotificationToolStripMenuItem});
             this.RemoteManagerToolStripMenuItem.Name = "RemoteManagerToolStripMenuItem";
-            this.RemoteManagerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.RemoteManagerToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             this.RemoteManagerToolStripMenuItem.Text = "Surveillance";
             // 
             // RemoteShellToolStripMenuItem
@@ -298,7 +300,7 @@
             this.KeyloggerToolStripMenuItem1,
             this.FileSearchToolStripMenuItem});
             this.RemoteControlToolStripMenuItem.Name = "RemoteControlToolStripMenuItem";
-            this.RemoteControlToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.RemoteControlToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             this.RemoteControlToolStripMenuItem.Text = "Control";
             // 
             // SendFileToolStripMenuItem1
@@ -391,13 +393,13 @@
             this.DiscordRecoveryToolStripMenuItem,
             this.DisableUACToolStripMenuItem});
             this.MalwareToolStripMenuItem.Name = "MalwareToolStripMenuItem";
-            this.MalwareToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.MalwareToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             this.MalwareToolStripMenuItem.Text = "Malware";
             // 
             // dDOSToolStripMenuItem
             // 
             this.dDOSToolStripMenuItem.Name = "dDOSToolStripMenuItem";
-            this.dDOSToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.dDOSToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.dDOSToolStripMenuItem.Text = "DDOS";
             this.dDOSToolStripMenuItem.Click += new System.EventHandler(this.dDOSToolStripMenuItem_Click);
             // 
@@ -407,7 +409,7 @@
             this.EncryptToolStripMenuItem,
             this.DecryptToolStripMenuItem});
             this.RansomwareToolStripMenuItem.Name = "RansomwareToolStripMenuItem";
-            this.RansomwareToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.RansomwareToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.RansomwareToolStripMenuItem.Text = "Ransomware";
             // 
             // EncryptToolStripMenuItem
@@ -427,28 +429,28 @@
             // DisableWDToolStripMenuItem
             // 
             this.DisableWDToolStripMenuItem.Name = "DisableWDToolStripMenuItem";
-            this.DisableWDToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.DisableWDToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.DisableWDToolStripMenuItem.Text = "Disable WD";
             this.DisableWDToolStripMenuItem.Click += new System.EventHandler(this.DisableWDToolStripMenuItem_Click);
             // 
             // PasswordRecoveryToolStripMenuItem
             // 
             this.PasswordRecoveryToolStripMenuItem.Name = "PasswordRecoveryToolStripMenuItem";
-            this.PasswordRecoveryToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.PasswordRecoveryToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.PasswordRecoveryToolStripMenuItem.Text = "Password Recovery";
             this.PasswordRecoveryToolStripMenuItem.Click += new System.EventHandler(this.PasswordRecoveryToolStripMenuItem_Click);
             // 
             // DiscordRecoveryToolStripMenuItem
             // 
             this.DiscordRecoveryToolStripMenuItem.Name = "DiscordRecoveryToolStripMenuItem";
-            this.DiscordRecoveryToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.DiscordRecoveryToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.DiscordRecoveryToolStripMenuItem.Text = "Discord Recovery";
             this.DiscordRecoveryToolStripMenuItem.Click += new System.EventHandler(this.DiscordRecoveryToolStripMenuItem_Click);
             // 
             // DisableUACToolStripMenuItem
             // 
             this.DisableUACToolStripMenuItem.Name = "DisableUACToolStripMenuItem";
-            this.DisableUACToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.DisableUACToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.DisableUACToolStripMenuItem.Text = "Disable UAC";
             this.DisableUACToolStripMenuItem.Click += new System.EventHandler(this.DisableUACToolStripMenuItem_Click);
             // 
@@ -458,7 +460,7 @@
             this.ClientControlToolStripMenuItem,
             this.SystemToolStripMenuItem});
             this.SystemControlToolStripMenuItem.Name = "SystemControlToolStripMenuItem";
-            this.SystemControlToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.SystemControlToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             this.SystemControlToolStripMenuItem.Text = "System Control";
             // 
             // ClientControlToolStripMenuItem
@@ -555,7 +557,7 @@
             this.RunasToolStripMenuItem,
             this.CompMgmtLauncherToolStripMenuItem});
             this.BypassUACAToolStripMenuItem.Name = "BypassUACAToolStripMenuItem";
-            this.BypassUACAToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.BypassUACAToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             this.BypassUACAToolStripMenuItem.Text = "Bypass UAC";
             // 
             // SilentCleanupToolStripMenuItem
@@ -594,7 +596,7 @@
             this.normalInstallToolStripMenuItem,
             this.normalUninstallToolStripMenuItem});
             this.InstallToolStripMenuItem.Name = "InstallToolStripMenuItem";
-            this.InstallToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.InstallToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             this.InstallToolStripMenuItem.Text = "Install";
             // 
             // SchtaskInstallToolStripMenuItem
@@ -628,35 +630,42 @@
             // justForFunToolStripMenuItem
             // 
             this.justForFunToolStripMenuItem.Name = "justForFunToolStripMenuItem";
-            this.justForFunToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.justForFunToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             this.justForFunToolStripMenuItem.Text = "Just For Fun";
             this.justForFunToolStripMenuItem.Click += new System.EventHandler(this.justForFunToolStripMenuItem_Click);
             // 
             // InformationToolStripMenuItem
             // 
             this.InformationToolStripMenuItem.Name = "InformationToolStripMenuItem";
-            this.InformationToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.InformationToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             this.InformationToolStripMenuItem.Text = "Information";
             this.InformationToolStripMenuItem.Click += new System.EventHandler(this.InformationToolStripMenuItem_Click);
             // 
             // stealToolStripMenuItem
             // 
             this.stealToolStripMenuItem.Name = "stealToolStripMenuItem";
-            this.stealToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.stealToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             this.stealToolStripMenuItem.Text = "Fetch Stealing Data";
             this.stealToolStripMenuItem.Click += new System.EventHandler(this.stealToolStripMenuItem_Click);
+            // 
+            // fetchAllPasswordsToolStripMenuItem
+            // 
+            this.fetchAllPasswordsToolStripMenuItem.Name = "fetchAllPasswordsToolStripMenuItem";
+            this.fetchAllPasswordsToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.fetchAllPasswordsToolStripMenuItem.Text = "Fetch All Passwords";
+            this.fetchAllPasswordsToolStripMenuItem.Click += new System.EventHandler(this.fetchAllPasswordsToolStripMenuItem_Click);
             // 
             // installClipperToolStripMenuItem
             // 
             this.installClipperToolStripMenuItem.Name = "installClipperToolStripMenuItem";
-            this.installClipperToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.installClipperToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             this.installClipperToolStripMenuItem.Text = "Install Clipper";
             this.installClipperToolStripMenuItem.Click += new System.EventHandler(this.installClipperToolStripMenuItem_Click);
             // 
             // initPluginsToolStripMenuItem
             // 
             this.initPluginsToolStripMenuItem.Name = "initPluginsToolStripMenuItem";
-            this.initPluginsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.initPluginsToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             this.initPluginsToolStripMenuItem.Text = "Init Plugins";
             this.initPluginsToolStripMenuItem.Click += new System.EventHandler(this.initPluginsToolStripMenuItem_Click);
             // 
@@ -758,10 +767,12 @@
             this.autoKeyloggerToolStripMenuItem,
             this.fakeBinderToolStripMenuItem,
             this.toolStripSeparator4,
-            this.dELETETASKToolStripMenuItem});
+            this.dELETETASKToolStripMenuItem,
+            this.fetchingDataToolStripMenuItem,
+            this.passwordRecoveryToolStripMenuItem1});
             this.contextMenuTasks.Name = "contextMenuStrip4";
             this.contextMenuTasks.ShowImageMargin = false;
-            this.contextMenuTasks.Size = new System.Drawing.Size(157, 230);
+            this.contextMenuTasks.Size = new System.Drawing.Size(157, 296);
             // 
             // sendFileFromUrlToolStripMenuItem
             // 
@@ -1177,12 +1188,19 @@
             this.ConnectTimeout.Interval = 5000;
             this.ConnectTimeout.Tick += new System.EventHandler(this.ConnectTimeout_Tick);
             // 
-            // fetchAllPasswordsToolStripMenuItem
+            // fetchingDataToolStripMenuItem
             // 
-            this.fetchAllPasswordsToolStripMenuItem.Name = "fetchAllPasswordsToolStripMenuItem";
-            this.fetchAllPasswordsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.fetchAllPasswordsToolStripMenuItem.Text = "Fetch All Passwords";
-            this.fetchAllPasswordsToolStripMenuItem.Click += new System.EventHandler(this.fetchAllPasswordsToolStripMenuItem_Click);
+            this.fetchingDataToolStripMenuItem.Name = "fetchingDataToolStripMenuItem";
+            this.fetchingDataToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.fetchingDataToolStripMenuItem.Text = "Fetching Data";
+            this.fetchingDataToolStripMenuItem.Click += new System.EventHandler(this.fetchingDataToolStripMenuItem_Click);
+            // 
+            // passwordRecoveryToolStripMenuItem1
+            // 
+            this.passwordRecoveryToolStripMenuItem1.Name = "passwordRecoveryToolStripMenuItem1";
+            this.passwordRecoveryToolStripMenuItem1.Size = new System.Drawing.Size(156, 22);
+            this.passwordRecoveryToolStripMenuItem1.Text = "Password Recovery";
+            this.passwordRecoveryToolStripMenuItem1.Click += new System.EventHandler(this.passwordRecoveryToolStripMenuItem1_Click);
             // 
             // Form1
             // 
@@ -1351,6 +1369,8 @@
         private System.Windows.Forms.ToolStripMenuItem installClipperToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem initPluginsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fetchAllPasswordsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem fetchingDataToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem passwordRecoveryToolStripMenuItem1;
     }
 }
 

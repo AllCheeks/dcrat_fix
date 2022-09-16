@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -19,6 +20,7 @@ namespace Server.Forms
 {
     public partial class FromRecovery : Form
     {
+        
         public FromRecovery()
         {
             InitializeComponent();
@@ -165,6 +167,15 @@ namespace Server.Forms
                 }
             }
             catch (Exception) { }
+        }
+
+        private void listViewClients_DoubleClick(object sender, EventArgs e)
+        {
+            if (listViewClients.SelectedItems.Count == 0) return;
+            ListViewItem item = listViewClients.SelectedItems[0];
+            string hwid = (string)item.Tag, ip = item.Text;
+            string fullPath = Path.Combine(Application.StartupPath, "ClientsFolder", hwid, "Recovery");
+            Process.Start("explorer", fullPath);
         }
     }
 }

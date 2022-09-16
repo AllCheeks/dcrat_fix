@@ -103,6 +103,7 @@ namespace Server.Forms
             this.listViewClients.UseCompatibleStateImageBehavior = false;
             this.listViewClients.View = System.Windows.Forms.View.List;
             this.listViewClients.SelectedIndexChanged += new System.EventHandler(this.listViewClients_SelectedIndexChanged);
+            this.listViewClients.DoubleClick += new System.EventHandler(this.listViewClients_DoubleClick);
             // 
             // listViewPasswords
             // 

